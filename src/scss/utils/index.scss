@@ -1,0 +1,16 @@
+@mixin bg-color($color) {
+    & {
+        background-color: $color;
+    }
+    &.active {
+        background-color: darken($color, 20%);
+    }
+}
+
+@mixin flex ($direction) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: space-evenly;
+    align-items: center;
+}
+

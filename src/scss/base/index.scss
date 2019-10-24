@@ -1,0 +1,29 @@
+@font-face {
+    font-family: "Segment7";
+    src: url("/fonts/Segment7Standard.woff") format("woff"); 
+}
+
+// COLORS
+$background-color: rgb(110, 94, 94);
+$base-color: lightgrey;
+$step-color: rgb(182, 37, 146);
+$step-color-active: burlywood;
+$led-color: red;
+$led-color-active: yellow;
+$pattern-color-active: blueviolet;
+$select-color-active: yellow;
+
+// LAYOUT
+$ratio: 1.6180339;
+$width: 900px;
+$height: $width / $ratio;
+$step-width: ($width / 16) - 10px;
+$step-height: $step-width * $ratio;
+
+* {
+    box-sizing: border-box;
+}
+html, body {
+    height: 100vh;
+    background-color: $background-color;
+}

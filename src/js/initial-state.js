@@ -1,16 +1,9 @@
-
-/**
- * 
- *  INITIAL STATE 
- * 
- */
-
 export const initialState = {
     // sequences[pattern][track][step]
     sequences: Array(8).fill().map( (_, patternNum) => 
             Array(8).fill().map( (_, trackNum) => 
                 Array(16).fill().map( (_, stepNum) => 
-                    Math.floor((trackNum + stepNum) / (patternNum + 1)) % ((trackNum + 4) % Math.floor(Math.random() * 12)) == 0 ? 1 : 0
+                    stepNum % Math.abs(4 - trackNum + patternNum) == 0 ? 1 : 0
                 )
             )
         ),

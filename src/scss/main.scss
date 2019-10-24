@@ -1,0 +1,14 @@
+@import 'base';
+@import 'layout';
+@import 'modules';
+@import 'states';
+@import 'utils';
+
+.viz {
+    border: 1px solid black;
+}
+.pot.viz {
+    border: none;
+}
+
+

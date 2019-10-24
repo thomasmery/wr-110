@@ -20,6 +20,8 @@ export const createSingleSourceOfTruth = (initialState) => {
         , state);
       
         subscribers.forEach( (cb) => cb(state));
+        
+        localStorage.setItem('wr', JSON.stringify(state));
     };
 
     const useReducer = (...reducerList) => reducers.push(...reducerList);

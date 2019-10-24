@@ -1,0 +1,15 @@
+#play.active {
+    background-color: green;
+}
+#rec.active {
+    background-color: red;
+}
+.pattern-pad.active {
+    background-color: $pattern-color-active;
+}
+.select.active {
+    background-color: $select-color-active;
+}
+.led.active {
+    background-color: $led-color-active;
+}

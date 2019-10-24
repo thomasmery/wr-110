@@ -9,9 +9,11 @@ import stepReducer, {
     tempoReducer
 } from './reducers.js';
 
+// localstorage ?
+const localState = JSON.parse(window.localStorage.getItem('wr'));
 
 // Create SSOT
-const stateManager = createSingleSourceOfTruth(initialState);
+const stateManager = createSingleSourceOfTruth(localState || initialState);
 
 // use reducers
 stateManager.useReducer(
