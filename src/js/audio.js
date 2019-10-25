@@ -186,6 +186,69 @@ const audioManager = ( (audioContext) => {
             })
         }
     }
+    const animateAudio2 = () => {
+        if ( !playing ) {
+            return;
+        }
+        requestAnimationFrame(animateAudio);
+
+        const audioTime = audioContext.currentTime;
+
+        if (currentStep == -1) {
+            currentStep = 0;
+            nextStep = 0;
+            nextStepTime = startTime;
+            // firstClick = false;
+        }
+        // pour programmer la lecture d'un sample, j'ai besoin de savoir le temps de la step qui arrive
+        // donc nextStepTime
+        // au premier passage de animate audio, nextStepTime = startTime;
+        // ensuite nextStepTime += sixteenth
+        // à priori simple
+        // pour savoir si je dois programmer le prochain sample, je dois comparer ma position dans la séquence avec la dernière position qui a été programmée
+        // si je suis sur la position déjà programmée, je ne fais rien.
+        // si je suis sur la position suivante je programme
+        // donc je vais garder en mémoire lastStep, dont la valeur est mise à jour chaque fois que je programme un sample
+        // si currentStep est différent de lastStep (devrait être égal à lastStep + 1)
+        // je programme les samples sur nextStep et je mets à jour lastStep
+        // Je dois mettre à jour currentStep à chaque appel de animateAudio
+        // current est incrémenté si le temps passé depuis la dernière step est >= sixteenth (double croche)
+        
+
+
+        sequence.forEach( (seq, instrument) => {
+            if (seq[nextStep] == 1) {
+                const playedBuff = playSample( samples[instrument], nextStepTime, instrument);
+                scheduledStep.buffSources.push( playedBuff);
+            }
+        })
+
+        // state update
+        if (currentStep != lastStep) {
+            lastStep = currentStep;
+            stateManager.dispatch({
+                "type": "setCurrentStep",
+                currentStep
+            })
+        }
+
+
+        // let startTime    = 0;    // time at start 
+        // let lastStep     = -1;   // last scheduled step
+        // let currentStep  = -1;   // step currently being played
+        // let nextStep     = -1;   // step to schedule
+        // let nextStepTime = -1;   // 
+        // let firstClick   = true; // 
+        // let playing      = false;//
+        // let tempo        = 0;
+        // let sequenceDuration = 60 * 4 / tempo;
+        // let sixteenth = sequenceDuration / 16;
+        // let scheduledStep = {
+        //     number: -1,     
+        //     buffSources: []
+        // };
+
+    }
     const playSample = (sample, time, trackNum) => {
         const buffSource = new AudioBufferSourceNode(audioContext, {
             buffer: sample
